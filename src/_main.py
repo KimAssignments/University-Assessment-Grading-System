@@ -159,7 +159,7 @@ def courses_add():
         '''))
 
         # Ask for course code
-        course_code = input('\n\tCourse Code: ')
+        course_code = input('\n\tCourse Code: ').upper()
 
         # If course code is empty, ask again
         if course_code.strip() == '':
@@ -183,7 +183,7 @@ def courses_remove():
         '''))
 
         # Ask for course code
-        course_code = input('\n\tCourse Code: ')
+        course_code = input('\n\tCourse Code: ').upper()
 
         # If course code is empty, ask again
         if course_code.strip() == '':
@@ -192,7 +192,7 @@ def courses_remove():
 
         # If course code is not empty, remove course
         else:
-            courses.remove(course_code)
+            courses.delete(course_code)
             input('\n\tPress Enter to continue')
 
 def courses_update():
@@ -207,7 +207,7 @@ def courses_update():
         '''))
 
         # Ask for course code
-        course_code = input('\n\tCourse Code: ')
+        course_code = input('\n\tCourse Code: ').upper()
 
         # If course code is empty, ask again
         if course_code.strip() == '':
@@ -232,6 +232,7 @@ def courses_update():
             '''))
 
             # Print course details
+            df = courses.view(course_code)
             print(
                 tabulate(
                     df,
@@ -269,7 +270,7 @@ def courses_search():
         '''))
 
         # Ask for course code
-        course_code = input('\n\tCourse Code: ')
+        course_code = input('\n\tCourse Code: ').upper()
 
         # Search for course code and print results
         df = courses.search(course_code)
@@ -334,7 +335,7 @@ def students_add():
         '''))
 
         # Ask for student code
-        student_code = input('\n\tStudent Code: ')
+        student_code = input('\n\tStudent Code: ').upper()
 
         # If student code is empty, ask again
         if student_code.strip() == '':
@@ -358,7 +359,7 @@ def students_remove():
         '''))
 
         # Ask for student code
-        student_code = input('\n\tStudent Code: ')
+        student_code = input('\n\tStudent Code: ').upper()
 
         # If student code is empty, ask again
         if student_code.strip() == '':
@@ -367,7 +368,7 @@ def students_remove():
 
         # If student code is not empty, remove student
         else:
-            students.remove(student_code)
+            students.delete(student_code)
             input('\n\tPress Enter to continue')
 
 def students_update():
@@ -382,7 +383,7 @@ def students_update():
         '''))
 
         # Ask for student code
-        student_code = input('\n\tStudent Code: ')
+        student_code = input('\n\tStudent Code: ').upper()
 
         # If student code is empty, ask again
         if student_code.strip() == '':
@@ -407,6 +408,7 @@ def students_update():
             '''))
 
             # Print student details
+            df = students.view(student_code)
             print(
                 tabulate(
                     df,
@@ -444,7 +446,7 @@ def students_search():
         '''))
 
         # Ask for student code
-        student_code = input('\n\tStudent Code: ')
+        student_code = input('\n\tStudent Code: ').upper()
 
         # Search for student code and print results
         df = students.search(student_code)
@@ -509,8 +511,8 @@ def results_add():
         '''))
 
         # Ask for student code and course code
-        student_code = input('\n\tStudent Code: ')
-        course_code = input('\n\tCourse Code: ')
+        student_code = input('\n\tStudent Code: ').upper()
+        course_code = input('\n\tCourse Code: ').upper()
 
         # If one of the codes is empty, ask again
         if student_code.strip() == '' or course_code.strip() == '':
@@ -534,8 +536,8 @@ def results_remove():
         '''))
 
         # Ask for student code and course code
-        student_code = input('\n\tStudent Code: ')
-        course_code = input('\n\tCourse Code: ')
+        student_code = input('\n\tStudent Code: ').upper()
+        course_code = input('\n\tCourse Code: ').upper()
 
         # If one of the codes is empty, ask again
         if student_code.strip() == '' or course_code.strip() == '':
@@ -559,8 +561,8 @@ def results_update():
         '''))
 
         # Ask for student code and course code
-        student_code = input('\n\tStudent Code: ')
-        course_code = input('\n\tCourse Code: ')
+        student_code = input('\n\tStudent Code: ').upper()
+        course_code = input('\n\tCourse Code: ').upper()
 
         # If one of the codes is empty, ask again
         if student_code.strip() == '' or course_code.strip() == '':
@@ -585,6 +587,7 @@ def results_update():
             '''))
 
             # Print result details
+            df = results.view(student_code=student_code, course_code=course_code)
             print(
                 tabulate(
                     df,
@@ -622,7 +625,7 @@ def results_search():
         '''))
 
         # Ask for result code
-        code = input('\n\tAny Code: ')
+        code = input('\n\tAny Code: ').upper()
 
         # Search for result code and print results
         df = results.search(code)
