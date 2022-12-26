@@ -26,7 +26,7 @@ def pull_data(
     Returns:
         pandas.DataFrame: The data.
     """
-    FILENAME = section + '.csv'
+    FILENAME = section + '.txt'
     touch_file(FILENAME, PATH)
     if os.path.getsize(os.path.join(PATH, FILENAME)) == 0:
         return pd.DataFrame()
@@ -46,7 +46,7 @@ def push_data(
     Returns:
         None
     """
-    FILENAME = section + '.csv'
+    FILENAME = section + '.txt'
     touch_file(FILENAME, PATH)
 
     return data.to_csv(os.path.join(PATH, FILENAME), encoding='utf-8')

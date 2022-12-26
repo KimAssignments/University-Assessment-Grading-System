@@ -70,6 +70,8 @@ class Application:
         """Views the data.
         """
         df = self.pull()
+        
+        # Return an empty dataframe if the code does not exist.
         if code not in df.index:
             return pd.DataFrame()
 
