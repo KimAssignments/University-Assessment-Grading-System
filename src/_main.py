@@ -5,13 +5,14 @@ import sys
 
 from ._app import User
 from ._log_utils import logger
-from ._sub_app import Courses, Students, Results
+from ._sub_app import Courses, Students, Results, Assessments
 from ._utils import cls
 
 courses = Courses()
 students = Students()
 results = Results()
 user = User()
+assessments = Assessments()
 
 
 def login_screen():
@@ -466,6 +467,7 @@ def results_screen() -> callable:
         "2": results_remove,
         "3": results_update,
         "4": results_search,
+        "5": asssessment,
     }
 
     while True:
@@ -637,6 +639,49 @@ def results_search():
 
         input('\n\tPress Enter to continue')
         continue
+    
+def asssessment():
+    while True:
+        slc=0
+        if slc==0:
+            print("This is Flamescion,  a statistical analysis  system")
+            selection=input("1 for Test 1, 2 for Test 2 , 3 for Assessment 1 , 4 for Assessment 2, 5 for Final Exam, A for ALl ")
+            if selection =="1" or "2" or "3" or "4" or "5" or "A":
+                slc=1
+            else:
+                print("Error, Please key in the CORRECT value")
+                slc=0
+        if slc==1:
+            if selection =="1":
+                print("Standard Deviation of Test 1 is", assessments.t1std())
+                print("Mean for Test 1 is ",assessments.t1mean())
+                print("Max and Min for Test 1 is ",assessments.t1max(),"and",assessments.t1min(),"Respectively")
+                print("Median for Test 1 is",assessments.t1median())
+            if selection == "2":
+                print("Standard Deviation of Test 2 is", assessments.t2std())
+                print("Mean for Test 2 is ", assessments.t2mean())
+                print("Max and Min for Test 2 is ", assessments.t2max(), "and", assessments.t2min(), "Respectively")
+                print("Median for Test 2 is", assessments.t2median())
+            if selection =="3":
+                print("Standard Deviation of Assessment 1 is", assessments.a1std())
+                print("Mean for Assessment 1 is ",assessments.a1mean())
+                print("Max and Min for Assessment 1 is ",assessments.a1max(),"and",assessments.a1min(),"Respectively")
+                print("Median for Assessment 1 is",assessments.a1median())
+            if selection =="4":
+                print("Standard Deviation of Assessment 2 is", assessments.a2std())
+                print("Mean for Assessment 2 is ",assessments.a2mean())
+                print("Max and Min for Assessment 2 is ",assessments.a2max(),"and",assessments.a2min(),"Respectively")
+                print("Median for Assessment 2 is",assessments.a2median())
+            if selection =="5":
+                print("Standard Deviation of Final Exam is ",assessments.festd())
+                print("Mean for Final Exam is ",assessments.femean())
+                print("Max and Min for Final Exam is ",assessments.femax(),"and",assessments.femin(),"Respectively")
+                print("Median for Final Exam is ",assessments.femedian())
+            if selection =="A":
+                print("Standard Deviation of Total Marks is ", assessments.ttlstd())
+                print("Mean for Total Marks is ", assessments.ttlmean())
+                print("Max and Min for Total Marks is ", assessments.ttlmax(), "and", assessments.ttlmin(), "Respectively")
+                print("Median for Total Marks is ", assessments.ttlmedian())
 
 def user_screen() -> callable:
     options: dict = {

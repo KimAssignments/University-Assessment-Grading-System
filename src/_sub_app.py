@@ -1,4 +1,5 @@
 
+import numpy as np
 import pandas as pd
 
 from ._app import Application
@@ -224,3 +225,239 @@ class Assessments(Results):
     """
     def __init__(self):
         super().__init__()
+        self.results = Results()
+
+    def total(self):
+        df=self.pull()
+        rowlen=len(df.axes[0])
+        counter=0
+        ttllst=[]
+        a1lst=[]
+        a2lst=[]
+        felst=[]
+        t1lst=[]
+        t2lst=[]
+
+        while counter<rowlen:
+            a1=df['A1'].iloc[counter]
+            a1=int(a1)
+            a2=df['A2'].iloc[counter]
+            a2=int(a2)
+            t1 = df['T1'].iloc[counter]
+            t1=int(t1)
+            t2 = df['T2'].iloc[counter]
+            t2=int(t2)
+            fe = df['FE'].iloc[counter]
+            fe=int(fe)
+            sum = a1 + a2 + t1 + t2 + fe
+
+            a1lst.append(a1)
+            a2lst.append(a2)
+            t1lst.append(t1)
+            t2lst.append(t2)
+            felst.append(fe)
+            ttllst.append(sum)
+            counter=counter+1
+
+        newcolumn=pd.DataFrame(df)
+        newcolumn['Total Marks']=ttllst
+
+
+
+
+
+        return(ttllst,a1lst,a2lst,t1lst,t2lst,felst,df)
+
+    def ttlmean(self):
+        ttltotal=self.total()[0]
+
+        tttl=sum(ttltotal)
+        ttlnum=len(ttltotal)
+        mean=tttl/ttlnum
+
+        return(mean)
+
+    def a1mean(self):
+        ttl=self.total()[1]
+        tttl=sum(ttl)
+        ttlnum=len(ttl)
+        mean=tttl/ttlnum
+
+        return(mean)
+
+    def a2mean(self):
+        ttl = self.total()[2]
+        tttl = sum(ttl)
+        ttlnum = len(ttl)
+        mean = tttl / ttlnum
+
+        return (mean)
+
+    def t1mean(self):
+        ttl = self.total()[3]
+        tttl = sum(ttl)
+        ttlnum = len(ttl)
+        mean = tttl / ttlnum
+
+        return (mean)
+
+    def t2mean(self):
+        ttl = self.total()[4]
+        tttl = sum(ttl)
+        ttlnum = len(ttl)
+        mean = tttl / ttlnum
+
+        return (mean)
+
+    def femean(self):
+        ttl = self.total()[5]
+        ttl = sum(ttl)
+        ttlnum = len(ttl)
+        mean = ttl / ttlnum
+
+        return (mean)
+
+    def ttlmedian(self):
+        ttltotal = self.total()[0]
+        ttltotal.sort()
+        median = len(ttltotal) // 2
+        resultant = (ttltotal[median] + ttltotal[median]) / 2
+        return(resultant)
+
+    def a1median(self):
+        ttltotal = self.total()[1]
+        ttltotal.sort()
+        median = len(ttltotal) // 2
+        resultant = (ttltotal[median] + ttltotal[median]) / 2
+        return(resultant)
+
+    def a2median(self):
+        ttltotal = self.total()[2]
+        ttltotal.sort()
+        median = len(ttltotal) // 2
+        resultant = (ttltotal[median] + ttltotal[median]) / 2
+        return(resultant)
+
+    def t1median(self):
+        ttltotal = self.total()[3]
+        ttltotal.sort()
+        median = len(ttltotal) // 2
+        resultant = (ttltotal[median] + ttltotal[median]) / 2
+        return(resultant)
+
+    def t2median(self):
+        ttltotal = self.total()[4]
+        ttltotal.sort()
+        median = len(ttltotal) // 2
+        resultant = (ttltotal[median] + ttltotal[median]) / 2
+        return(resultant)
+
+    def femedian(self):
+        ttltotal = self.total()[5]
+        ttltotal.sort()
+        median = len(ttltotal) // 2
+        resultant = (ttltotal[median] + ttltotal[median]) / 2
+        return(resultant)
+
+    def ttlmax(self):
+        ttltotal = self.total()[0]
+        ttltotal.sort()
+        resultant=ttltotal[0]
+        return (resultant)
+
+    def a1max(self):
+        ttltotal = self.total()[1]
+        ttltotal.sort()
+        resultant = ttltotal[0]
+        return (resultant)
+
+    def a2max(self):
+        ttltotal = self.total()[2]
+        ttltotal.sort()
+        resultant = ttltotal[0]
+        return (resultant)
+
+    def t1max(self):
+        ttltotal = self.total()[3]
+        ttltotal.sort()
+        resultant = ttltotal[0]
+        return (resultant)
+
+    def t2max(self):
+        ttltotal = self.total()[4]
+        ttltotal.sort()
+        resultant = ttltotal[0]
+        return (resultant)
+
+    def femax(self):
+        ttltotal = self.total()[5]
+        ttltotal.sort()
+        resultant = ttltotal[0]
+        return (resultant)
+
+    def ttlmin(self):
+        ttltotal = self.total()[0]
+        ttltotal.sort()
+        resultant = ttltotal[-1]
+        return (resultant)
+
+    def a1min(self):
+        ttltotal = self.total()[1]
+        ttltotal.sort()
+        resultant = ttltotal[-1]
+        return (resultant)
+
+    def a2min(self):
+        ttltotal = self.total()[2]
+        ttltotal.sort()
+        resultant = ttltotal[-1]
+        return (resultant)
+
+    def t1min(self):
+        ttltotal = self.total()[3]
+        ttltotal.sort()
+        resultant = ttltotal[-1]
+        return (resultant)
+
+    def t2min(self):
+        ttltotal = self.total()[4]
+        ttltotal.sort()
+        resultant = ttltotal[-1]
+        return (resultant)
+
+    def femin(self):
+        ttltotal = self.total()[5]
+        ttltotal.sort()
+        resultant = ttltotal[-1]
+        return (resultant)
+
+    def ttlstd(self):
+        ttltotal = self.total()[0]
+        std=np.std(ttltotal)
+        return(std)
+
+    def a1std(self):
+        ttltotal = self.total()[1]
+        std = np.std(ttltotal)
+        return (std)
+
+    def a2std(self):
+        ttltotal = self.total()[2]
+        std = np.std(ttltotal)
+        return (std)
+
+    def t1std(self):
+        ttltotal = self.total()[3]
+        std = np.std(ttltotal)
+        return (std)
+
+    def t2std(self):
+        ttltotal = self.total()[4]
+        std = np.std(ttltotal)
+        return (std)
+
+    def festd(self):
+        ttltotal = self.total()[5]
+        std = np.std(ttltotal)
+        return (std)
+
