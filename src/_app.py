@@ -194,6 +194,8 @@ class User:
 
         if result and not silent:
             logger.info(f'{self.class_name}: {username} logged in')
+        if not result and not silent:
+            logger.warning(f'{self.class_name}: {username} failed to log in')
 
         return result
 
@@ -205,6 +207,7 @@ class User:
 
         # If the username already exists, return.
         if self.check(username):
+            logger.bind(excluded=True).warning(f'{self.class_name}: {username} already exists')
             return False
 
         # Encrypt the password and add it to the dictionary.
